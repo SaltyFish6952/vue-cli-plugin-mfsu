@@ -1,0 +1,24 @@
+{
+  "name": "vue-cli-plugin-mfsu",
+  "version": "0.0.1",
+  "description": "vue-cli plugin mfsu with webpack 5",
+  "main": "lib/index.js",
+  "repository": "https://github.com/SaltyFish6952/vue-cli-plugin-mfsu.git",
+  "author": "SaltyFish6952 <qq695243929@126.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx tsc --build ./tsconfig.json",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@babel/core": "7.0.0",
+    "@umijs/mfsu": "^4.0.0-rc.10",
+    "@vue/cli-service": "^5.0.4",
+    "webpack-chain": "^6.5.1"
+  },
+  "devDependencies": {
+    "patch-package": "^6.4.7",
+    "prettier": "^2.6.1",
+    "typescript": "^4.6.3"
+  }
+}
