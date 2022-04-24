@@ -3,8 +3,8 @@ vue-cli support mfsu
 
 ## 思路
 1. `vue-cli`没有暴露过多的`hooks`去进行自定义的操作，因此需要修改(copy)`cli-service serve`进行`Module Federation`的操作注入。
-2. `vue-cli`默认生成的`babel`配置项`@vue/cli-plugin-babel/preset`，可能会与MF插件冲突，因此也需要进行魔改。
-3. 冲突主要有2点：`polyfill`和一些`babel`动态语法的插件。
+2. `vue-cli`默认生成的`babel`配置项`@vue/cli-plugin-babel/preset`，需要设置`@babel/preset-env`的参数：`{useBuiltIns: false}`以关闭自动注入的`polyfill`，以避免`MF`生成自动注入的依赖。参考：[Babel](https://babeljs.io/docs/en/babel-preset-env#usebuiltins-false) [@vue/cli-plugin-babel/preset](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/babel-preset-app)
+3. 一些`babel`动态语法的插件也有可能会造成冲突，如`babel-plugin-dynamic-import-node`。
 
 ## 插件
 1. @umijs/mfsu [Github](https://github.com/umijs/umi-next/tree/master/packages/mfsu) [使用文档](https://github.com/umijs/umi-next/blob/master/docs/blog/mfsu-independent-usage.md)
