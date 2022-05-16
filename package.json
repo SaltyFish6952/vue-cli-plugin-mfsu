@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "@babel/core": "7.0.0",
-    "@umijs/mfsu": "^4.0.0-rc.10",
+    "@umijs/mfsu": "^4.0.0-canary.20220421.1",
     "@vue/cli-service": "^5.0.4",
+    "babel-loader": "^8.2.4",
     "webpack-chain": "^6.5.1"
   },
   "devDependencies": {

@@ -84,9 +84,9 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
         }
 
 
-        webpackConfig.module.rule('js').use('babel-loader').tap(tapOptions)
-        webpackConfig.module.rule('ts').use('babel-loader').tap(tapOptions)
-        webpackConfig.module.rule('tsx').use('babel-loader').tap(tapOptions)
+        webpackConfig.module.rule('js').test(/\.m?jsx?$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
+        webpackConfig.module.rule('ts').test(/\.ts$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
+        webpackConfig.module.rule('tsx').test(/\.tsx$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
 
         // OR
 
