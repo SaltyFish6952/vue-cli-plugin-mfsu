@@ -66,7 +66,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           }
         }
 
-        /**************************************************** */
+        /** ************************* inject by mfsu ************************* */
 
         webpackConfig.devServer.set('setupMiddlewares', (middlewares) => {
           middlewares.unshift(...mfsu.getMiddlewares())
@@ -123,7 +123,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           webpackConfig.entry('app').add(path.resolve(api.service.context, e))
         })
 
-        /**************************************************** */
+        /** ************************* inject by mfsu ************************* */
       })
 
       // resolve webpack config
@@ -212,13 +212,13 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       webpackConfig.infrastructureLogging = { ...webpackConfig.infrastructureLogging, level: 'none' }
       webpackConfig.stats = 'errors-only'
 
-      /******************************************* */
+        /** ************************* inject by mfsu ************************* */
 
       await mfsu.setWebpackConfig({
         config: webpackConfig
       })
 
-      /******************************************* */
+        /** ************************* inject by mfsu ************************* */
 
       // create compiler
       const compiler = webpack(webpackConfig)
