@@ -13,14 +13,13 @@ const defaults = {
 const webpack = require('webpack')
 const { MFSU, esbuildLoader } = require('@umijs/mfsu')
 const path = require('path')
+const esbuild = require('esbuild')
 
 const mfsu = new MFSU({
   implementor: webpack,
   buildDepWithESBuild: true,
   unMatchLibs: ['path']
 })
-
-
 
 /**
  * @param api 原为build-scripts的调用接口， 现为vue-cli-plugin映射出来的插件钩子
@@ -31,7 +30,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
 
   // register command
   api.registerCommand(
-    'serve:msfu',
+    'serve:mfsu',
     {
       description: 'Running serve with Webpack 5 Module Federation',
       usage: 'vue-cli-service serve:msfu [options] [entry] same as command serve'
@@ -56,6 +55,16 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       // configs that only matters for dev server
       api.chainWebpack((webpackConfig) => {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+
+          if (!webpackConfig.get('devtool')) {
+            /** ************************* inject by mfsu ************************* */
+            // change 'eval-cheap-module-source-map'(origin in vue-CLI) to 'eval-cheap-source-map'
+            // fix debug incorrect
+            webpackConfig
+              .devtool('eval-cheap-source-map' as Config.DevTool)
+              /** ************************* inject by mfsu ************************* */
+          }
+
           // https://github.com/webpack/webpack/issues/6642
           // https://github.com/vuejs/vue-cli/issues/3539
           webpackConfig.output.globalObject(`(typeof self !== 'undefined' ? self : this)`)
@@ -73,48 +82,53 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           return middlewares
         })
 
-        // using babel-loader
+        const jsRule = webpackConfig.module.rule('js')
+        const tsRule = webpackConfig.module.rule('ts')
+        const tsxRule = webpackConfig.module.rule('tsx')
 
-        const tapOptions = (opt: Config.LoaderOptions) => {
-          debugger
-          return {
-            ...opt,
-            plugins: opt?.plugins instanceof Array ? [...mfsu.getBabelPlugins(), ...opt.plugins] : [...mfsu.getBabelPlugins()]
-          }
+        const {
+            mfsu: { useEsbuildLoader = false }
+        } = options.pluginOptions as any;
+
+        // using babel-loader
+        if (!useEsbuildLoader) {
+            const tapOptions = (opt: Config.LoaderOptions) => {
+                return {
+                    ...opt,
+                    plugins: opt?.plugins instanceof Array ? [...mfsu.getBabelPlugins(), ...opt.plugins] : [...mfsu.getBabelPlugins()]
+                };
+            };
+
+            jsRule.use("babel-loader").tap(tapOptions);
+            tsRule.use("babel-loader").tap(tapOptions);
+            tsxRule.use("babel-loader").tap(tapOptions);
+        } else {
+            // OR
+            // using esbuild-loader
+            let jsxFactory;
+            try {
+                jsxFactory = (api.resolve("tsconfig.json") as any).jsxFactory;
+            } catch (e) {}
+
+            const esbuildOptions = {
+                handler: [
+                    // [mfsu] 3. add mfsu esbuild loader handlers
+                    ...mfsu.getEsbuildLoaderHandler()
+                ],
+                target: "esnext",
+                implementation: esbuild,
+                jsxFactory
+            };
+
+            jsRule.uses.clear();
+            tsRule.uses.clear();
+            tsxRule.uses.clear();
+
+            jsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
         }
 
-
-        webpackConfig.module.rule('js').test(/\.m?jsx?$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
-        webpackConfig.module.rule('ts').test(/\.ts$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
-        webpackConfig.module.rule('tsx').test(/\.tsx$/).use('babel-loader').loader(require.resolve('babel-loader')).tap(tapOptions);
-
-        // OR
-
-        // chain.module
-        //   .rule('mfsu-rules')
-        //   .test(/\.[jt]sx?$/)
-        //   .use('babel-loader')
-        //   .options({
-        //     plugins: [
-        //       // [mfsu] 3. add mfsu babel plugins
-        //       ...mfsu.getBabelPlugins()
-        //     ]
-        //   })
-
-        // using esbuild-loader
-        // chain.module
-        //   .rule('es-rules')
-        //   .test(/\.[jt]sx?$/)
-        //   .use('esbuild')
-        //   .loader(esbuildLoader)
-        //   .options({
-        //     handler: [
-        //       // [mfsu] 3. add mfsu esbuild loader handlers
-        //       ...mfsu.getEsbuildLoaderHandler()
-        //     ],
-        //     target: 'esnext',
-        //     implementation: esbuild
-        //   })
 
         // config entry
         const entrys = webpackConfig.entry('app').values()
@@ -433,4 +447,8 @@ function genHistoryApiFallbackRewrites(baseUrl, pages = {}) {
       to: path.posix.join(baseUrl, pages[name].filename || `${name}.html`)
     }))
   return [...multiPageRewrites, { from: /./, to: path.posix.join(baseUrl, 'index.html') }]
+}
+
+module.exports.defaultModes = {
+  'serve:mfsu': 'development'
 }
