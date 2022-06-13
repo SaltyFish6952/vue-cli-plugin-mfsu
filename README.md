@@ -7,5 +7,5 @@ vue-cli support mfsu
 3. 一些`babel`动态语法的插件也有可能会造成冲突，如`babel-plugin-dynamic-import-node`。
 
 ## 插件
-1. @umijs/mfsu [Github](https://github.com/umijs/umi-next/tree/master/packages/mfsu) [使用文档](https://github.com/umijs/umi-next/blob/master/docs/blog/mfsu-independent-usage.md)
+1. @umijs/mfsu (当前使用) [Github](https://github.com/umijs/umi-next/tree/master/packages/mfsu) [使用文档](https://github.com/umijs/umi-next/blob/master/docs/blog/mfsu-independent-usage.md)
 2. alibaba/ice 不通用，需魔改支持vue [Github](https://github.com/alibaba/ice/blob/master/packages/plugin-react-app/src/userConfig/remoteRuntime/index.ts) [配置说明](https://ice.work/docs/guide/advanced/pre-compile)
