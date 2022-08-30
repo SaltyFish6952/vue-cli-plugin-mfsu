@@ -7,18 +7,17 @@
   "author": "SaltyFish6952 <qq695243929@126.com>",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc --build ./tsconfig.json",
-    "postinstall": "patch-package"
+    "build": "npx tsc --build ./tsconfig.json"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
-    "@umijs/mfsu": "^4.0.0-canary.20220516.3",
+    "@umijs/mfsu": "^4.0.0-canary.20220826.1",
     "@vue/cli-service": "^5.0.4",
     "babel-loader": "^8.2.4",
     "webpack-chain": "^6.5.1"
   },
   "devDependencies": {
-    "patch-package": "^6.4.7",
+    "cross-spawn": "^7.0.3",
     "prettier": "^2.6.1",
     "typescript": "^4.6.3"
   }
