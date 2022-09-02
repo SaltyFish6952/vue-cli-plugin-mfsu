@@ -44,8 +44,8 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       const isProduction = process.env.NODE_ENV === 'production'
 
       const { chalk } = require('@vue/cli-shared-utils')
-      const WebpackDevServer = require('@vue/cli-service/node_modules/webpack-dev-server')
-      const portfinder = require('@vue/cli-service/node_modules/portfinder')
+      const WebpackDevServer = require('webpack-dev-server')
+      const portfinder = require('portfinder')
       const prepareURLs = require('@vue/cli-service/lib/util/prepareURLs')
       const prepareProxy = require('@vue/cli-service/lib/util/prepareProxy')
       const launchEditorMiddleware = require('launch-editor-middleware')
@@ -71,7 +71,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
 
           if (!process.env.VUE_CLI_TEST && options.devServer.progress !== false) {
             // the default progress plugin won't show progress due to infrastructreLogging.level
-            webpackConfig.plugin('progress').use(require('@vue/cli-service/node_modules/progress-webpack-plugin'))
+            webpackConfig.plugin('progress').use(require('progress-webpack-plugin'))
           }
         }
 
@@ -345,7 +345,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           let copied = ''
           if (isFirstCompile && args.copy) {
             try {
-              require('@vue/cli-service/node_modules/clipboardy').writeSync(localUrlForBrowser)
+              require('clipboardy').writeSync(localUrlForBrowser)
               copied = chalk.dim('(copied to clipboard)')
             } catch (_) {
               /* catch exception if copy to clipboard isn't supported (e.g. WSL), see issue #3476 */
