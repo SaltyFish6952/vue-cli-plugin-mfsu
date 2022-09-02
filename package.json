@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-mfsu",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "vue-cli plugin mfsu with webpack 5",
   "main": "lib/index.js",
   "repository": "https://github.com/SaltyFish6952/vue-cli-plugin-mfsu.git",
@@ -18,6 +18,7 @@
     "launch-editor-middleware": "^2.2.1",
     "progress-webpack-plugin": "^1.0.12",
     "portfinder": "^1.0.26",
+    "webpack": "^5.54.0",
     "webpack-dev-server": "^4.7.3",
     "webpack-chain": "^6.5.1"
   },
