@@ -5,8 +5,6 @@ name: publish beta to npm
 
 on:
   workflow_dispatch:
-  release:
-    types: [created]
 
 jobs:
 #   build:
