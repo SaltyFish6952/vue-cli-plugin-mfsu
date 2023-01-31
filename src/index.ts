@@ -18,7 +18,12 @@ const esbuild = require('esbuild')
 const mfsu = new MFSU({
   implementor: webpack,
   buildDepWithESBuild: true,
-  unMatchLibs: ['path']
+  unMatchLibs: ['path'],
+  depBuildConfig: {
+    loader: {
+      ".woff": "dataurl",
+    }
+  }
 })
 
 /**
@@ -82,12 +87,16 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           return middlewares
         })
 
-        const jsRule = webpackConfig.module.rule('js')
-        const tsRule = webpackConfig.module.rule('ts')
-        const tsxRule = webpackConfig.module.rule('tsx')
+        const isTsEnv = webpackConfig.module.rules.has('ts') || webpackConfig.module.rules.has('tsx')
 
+        const jsRule = webpackConfig.module.rule('js')
+        let tsRule 
+        let tsxRule
+
+        isTsEnv && (tsRule = webpackConfig.module.rule('ts')) && (tsxRule = webpackConfig.module.rule('tsx'))
+        
         const {
-            mfsu: { useEsbuildLoader = false }
+            mfsu: { useEsbuildLoader = false } = {}
         } = options.pluginOptions as any;
 
         // using babel-loader
@@ -100,8 +109,8 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
             };
 
             jsRule.use("babel-loader").tap(tapOptions);
-            tsRule.use("babel-loader").tap(tapOptions);
-            tsxRule.use("babel-loader").tap(tapOptions);
+            tsRule && tsRule.use("babel-loader").tap(tapOptions);
+            tsxRule && tsxRule.use("babel-loader").tap(tapOptions);
         } else {
             // OR
             // using esbuild-loader
@@ -121,12 +130,12 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
             };
 
             jsRule.uses.clear();
-            tsRule.uses.clear();
-            tsxRule.uses.clear();
+            tsRule && tsRule.uses.clear();
+            tsxRule && tsxRule.uses.clear();
 
             jsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
-            tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
-            tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsRule &&tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsxRule && tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
         }
 
 
