@@ -109,8 +109,8 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
             };
 
             jsRule.use("babel-loader").tap(tapOptions);
-            tsRule.use("babel-loader").tap(tapOptions);
-            tsxRule.use("babel-loader").tap(tapOptions);
+            tsRule && tsRule.use("babel-loader").tap(tapOptions);
+            tsxRule && tsxRule.use("babel-loader").tap(tapOptions);
         } else {
             // OR
             // using esbuild-loader
@@ -130,12 +130,12 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
             };
 
             jsRule.uses.clear();
-            tsRule.uses.clear();
-            tsxRule.uses.clear();
+            tsRule && tsRule.uses.clear();
+            tsxRule && tsxRule.uses.clear();
 
             jsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
-            tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
-            tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsRule && tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsxRule && tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
         }
 
 
