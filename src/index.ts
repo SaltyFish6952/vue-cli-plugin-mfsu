@@ -15,11 +15,10 @@ const { MFSU, esbuildLoader } = require('@umijs/mfsu')
 const path = require('path')
 const esbuild = require('esbuild')
 
-const mfsu = new MFSU({
-  implementor: webpack,
-  buildDepWithESBuild: true,
-  unMatchLibs: ['path']
-})
+type mfsuOptions = {
+  unMatchLibs: string[]
+  useEsbuildLoader: boolean
+}
 
 /**
  * @param api 原为build-scripts的调用接口， 现为vue-cli-plugin映射出来的插件钩子
@@ -52,6 +51,16 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       const validateWebpackConfig = require('@vue/cli-service/lib/util/validateWebpackConfig')
       const isAbsoluteUrl = require('@vue/cli-service/lib/util/isAbsoluteUrl')
 
+      /** ************************* inject by mfsu ************************* */
+      const mfsuOptions: mfsuOptions = (options.pluginOptions as Record<string, any>).mfsu ?? {}
+
+      const mfsu = new MFSU({
+        implementor: webpack,
+        buildDepWithESBuild: true,
+        unMatchLibs: ["path", ...(Array.isArray(mfsuOptions.unMatchLibs) ? mfsuOptions.unMatchLibs: [])]
+      })
+      /** ************************* inject by mfsu ************************* */
+
       // configs that only matters for dev server
       api.chainWebpack((webpackConfig) => {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
@@ -81,17 +90,17 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
           middlewares.unshift(...mfsu.getMiddlewares())
           return middlewares
         })
+        const isTsEnv = webpackConfig.module.rules.has('ts') || webpackConfig.module.rules.has('tsx')
+
 
         const jsRule = webpackConfig.module.rule('js')
-        const tsRule = webpackConfig.module.rule('ts')
-        const tsxRule = webpackConfig.module.rule('tsx')
+        let tsRule
+        let tsxRule
 
-        const {
-            mfsu: { useEsbuildLoader = false }
-        } = options.pluginOptions as any;
+        isTsEnv && (tsRule = webpackConfig.module.rule("ts")) && (tsxRule = webpackConfig.module.rule("tsx"))
 
         // using babel-loader
-        if (!useEsbuildLoader) {
+        if (!mfsuOptions.useEsbuildLoader) {
             const tapOptions = (opt: Config.LoaderOptions) => {
                 return {
                     ...opt,
