@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-mfsu",
-  "version": "0.0.4-beta.1",
+  "version": "0.0.4-beta.2",
   "description": "vue-cli plugin mfsu with webpack 5",
   "main": "lib/index.js",
   "repository": "https://github.com/SaltyFish6952/vue-cli-plugin-mfsu.git",

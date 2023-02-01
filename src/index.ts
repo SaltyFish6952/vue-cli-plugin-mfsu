@@ -52,7 +52,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       const isAbsoluteUrl = require('@vue/cli-service/lib/util/isAbsoluteUrl')
 
       /** ************************* inject by mfsu ************************* */
-      const mfsuOptions: mfsuOptions = (options.pluginOptions as Record<string, any>).mfsu ?? {}
+      const mfsuOptions: mfsuOptions = (options?.pluginOptions as Record<string, any>)?.mfsu ?? {}
 
       const mfsu = new MFSU({
         implementor: webpack,
