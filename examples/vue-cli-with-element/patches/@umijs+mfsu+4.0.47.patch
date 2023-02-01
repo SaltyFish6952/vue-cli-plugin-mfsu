@@ -1,0 +1,13 @@
+diff --git a/node_modules/@umijs/mfsu/dist/loader/esbuild.js b/node_modules/@umijs/mfsu/dist/loader/esbuild.js
+index a8c1e0f..5203e48 100644
+--- a/node_modules/@umijs/mfsu/dist/loader/esbuild.js
++++ b/node_modules/@umijs/mfsu/dist/loader/esbuild.js
+@@ -36,7 +36,7 @@ async function esbuildTranspiler(source) {
+   const transformOptions = {
+     ...otherOptions,
+     target: options.target ?? "es2015",
+-    loader: ext ?? "js",
++    loader: ext !== null && ext !== void 0 ? ext === 'vue' ? 'ts' : ext : 'js',
+     sourcemap: this.sourceMap,
+     sourcefile: filePath
+   };

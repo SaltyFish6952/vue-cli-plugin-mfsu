@@ -1,0 +1,166 @@
+{
+  "cacheDependency": {},
+  "moduleGraph": {
+    "roots": [
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\mfsu-virtual-entry\\app.js",
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\index.js",
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\main.js",
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\App.vue",
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\vue.runtime.esm.js",
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue-style-loader\\lib\\listToStyles.js"
+    ],
+    "fileModules": {
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\mfsu-virtual-entry\\app.js": {
+        "importedModules": [
+          "F:/code/vue-cli-plugin-mfsu/examples/vue-cli-with-element/src/main.js"
+        ],
+        "isRoot": true
+      },
+      "F:/code/vue-cli-plugin-mfsu/examples/vue-cli-with-element/src/main.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\index.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\createSocketURL.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\reloadApp.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\sendMessage.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\log.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\overlay.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\socket.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\parseURL.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\stripAnsi.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\webpack\\hot\\log.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\core-js\\modules\\es.array.push.js"
+        ],
+        "isRoot": true
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\createSocketURL.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\reloadApp.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\log.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\webpack\\hot\\emitter.js"
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\sendMessage.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\log.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\modules\\logger\\index.js"
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\overlay.js": {
+        "importedModules": [
+          null,
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\core-js\\modules\\es.array.push.js"
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\socket.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\log.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\clients\\WebSocketClient.js"
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\parseURL.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\getCurrentScriptSource.js"
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\stripAnsi.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\webpack\\hot\\log.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\core-js\\modules\\es.array.push.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\clients\\WebSocketClient.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\log.js"
+        ]
+      },
+      "null": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\main.js": {
+        "importedModules": [
+          "vue/dist/vue.runtime.esm.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\plugins\\element.js",
+          null
+        ],
+        "isRoot": true
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\plugins\\element.js": {
+        "importedModules": [
+          "element-ui",
+          "vue/dist/vue.runtime.esm.js",
+          null
+        ]
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\modules\\logger\\index.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\getCurrentScriptSource.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\webpack-dev-server\\client\\utils\\webpack\\hot\\emitter.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\App.vue": {
+        "importedModules": [
+          null
+        ],
+        "isRoot": true
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\vue.runtime.esm.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\es.array.unshift.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\web.immediate.js",
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\es.array.push.js"
+        ],
+        "isRoot": true
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\es.array.unshift.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\web.immediate.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue\\dist\\core-js\\modules\\es.array.push.js": {
+        "importedModules": []
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue-style-loader\\lib\\listToStyles.js": {
+        "importedModules": [
+          "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue-style-loader\\lib\\core-js\\modules\\es.array.push.js"
+        ],
+        "isRoot": true
+      },
+      "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\node_modules\\vue-style-loader\\lib\\core-js\\modules\\es.array.push.js": {
+        "importedModules": []
+      }
+    },
+    "depModules": {
+      "vue/dist/vue.runtime.esm.js": {
+        "version": "2.7.14"
+      },
+      "element-ui": {
+        "version": "2.15.12"
+      }
+    },
+    "depSnapshotModules": {
+      "vue/dist/vue.runtime.esm.js": {
+        "file": "vue/dist/vue.runtime.esm.js",
+        "version": "2.7.14",
+        "importer": "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\main.js"
+      },
+      "element-ui": {
+        "file": "element-ui",
+        "version": "2.15.12",
+        "importer": "F:\\code\\vue-cli-plugin-mfsu\\examples\\vue-cli-with-element\\src\\plugins\\element.js"
+      }
+    }
+  }
+}
