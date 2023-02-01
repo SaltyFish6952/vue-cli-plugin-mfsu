@@ -52,7 +52,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
       const isAbsoluteUrl = require('@vue/cli-service/lib/util/isAbsoluteUrl')
 
       /** ************************* inject by mfsu ************************* */
-      const mfsuOptions: mfsuOptions = (options.pluginOptions as Record<string, any>).mfsu ?? {}
+      const mfsuOptions: mfsuOptions = (options?.pluginOptions as Record<string, any>)?.mfsu ?? {}
 
       const mfsu = new MFSU({
         implementor: webpack,
@@ -134,7 +134,7 @@ module.exports = async (api: PluginAPI, options: ProjectOptions) => {
             tsxRule && tsxRule.uses.clear();
 
             jsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
-            tsRule &&tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
+            tsRule && tsRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
             tsxRule && tsxRule.use("esbuild-mfsu").loader(esbuildLoader).options(esbuildOptions);
         }
 
